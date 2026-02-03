@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Landing from './pages/Landing';
+import BorrowDashboard from './pages/Borrow';
+import InvestDashboard from './pages/Invest';
+import Apply from './pages/Apply';
+import Login from './pages/Login';
+
+// Layout wrapper to conditionally show Footer or handle layout specifics
+const Layout = ({ children }) => {
+  return (
+    <div className="app-min-h">
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </div>
+  );
+};
+
+const Footer = () => (
+  <footer style={{
+    borderTop: '1px solid var(--border-subtle)',
+    padding: '2rem 0',
+    textAlign: 'center',
+    color: 'var(--text-muted)',
+    marginTop: 'auto'
+  }}>
+    <div className="container">
+      <p>&copy; 2024 BuildPath. Reimagining Credit.</p>
+    </div>
+  </footer>
+);
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/borrow" element={<BorrowDashboard />} />
+          <Route path="/invest" element={<InvestDashboard />} />
+          <Route path="/apply" element={<Apply />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
