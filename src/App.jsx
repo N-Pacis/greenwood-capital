@@ -6,6 +6,7 @@ import BorrowDashboard from './pages/Borrow';
 import InvestDashboard from './pages/Invest';
 import Apply from './pages/Apply';
 import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 
 // Layout wrapper to conditionally show Footer or handle layout specifics
 const Layout = ({ children }) => {
@@ -42,6 +43,8 @@ function App() {
           <Route path="/invest" element={<InvestDashboard />} />
           <Route path="/apply" element={<Apply />} />
           <Route path="/login" element={<Login />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </BrowserRouter>
