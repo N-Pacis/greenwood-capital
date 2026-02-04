@@ -115,13 +115,135 @@
     padding: 2rem;
     background: var(--bg-panel);
     border-radius: var(--radius-md);
-    border: 1px dashed var(--border-subtle);
+    border: 1px solid var(--border-subtle);
 }
 
-.transparency-placeholder {
-    font-family: monospace;
-    color: var(--text-accent);
-    margin-top: 1rem;
+.transparency-section h3 {
+    margin-bottom: 0.5rem;
+}
+
+.transparency-section > p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* Score Insights: table + chart */
+.score-insights-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.score-factors-table-wrap {
+    overflow-x: auto;
+}
+
+.score-factors-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.score-factors-table th,
+.score-factors-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.score-factors-table th {
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+.score-factors-table tbody tr:hover {
+    background: var(--bg-card);
+}
+
+.score-factors-table .points.good {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.score-factors-table .points.average {
+    color: var(--color-warning);
+    font-weight: 600;
+}
+
+.score-factors-table tfoot tr {
+    border-bottom: none;
+    border-top: 2px solid var(--border-subtle);
+}
+
+.score-factors-table tfoot td {
+    padding-top: 1rem;
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.badge.good {
+    background: rgba(23, 184, 119, 0.15);
+    color: var(--color-primary);
+}
+
+.badge.average {
+    background: rgba(210, 153, 34, 0.15);
+    color: var(--color-warning);
+}
+
+/* Bar chart */
+.score-chart-wrap h4 {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.score-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.score-chart-bar {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.score-chart-bar .bar-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.score-chart-bar .bar-fill {
+    height: 24px;
+    min-width: 4px;
+    width: calc(var(--pct, 0) * 1%);
+    max-width: 100%;
+    background: var(--gradient-brand);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.score-chart-bar .bar-fill.average {
+    background: var(--color-warning);
+}
+
+@media (max-width: 768px) {
+    .score-insights-content {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 900px) {

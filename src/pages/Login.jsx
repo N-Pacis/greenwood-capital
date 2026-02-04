@@ -35,7 +35,7 @@ const Login = () => {
                 <form onSubmit={handleLogin}>
                     <div className="form-group">
                         <label>Email</label>
-                        <input type="email" className="input-field" defaultValue="demo@buildpath.com" />
+                        <input type="email" className="input-field" defaultValue="demo@greenwoodcapital.com" />
                     </div>
                     <div className="form-group">
                         <label>Password</label>

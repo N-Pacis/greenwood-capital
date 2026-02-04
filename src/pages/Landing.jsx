@@ -54,7 +54,7 @@ const Landing = () => {
             {/* The Solution Section */}
             <section className="section solution-section">
                 <div className="container">
-                    <h2 className="section-title">The BuildPath Solution</h2>
+                    <h2 className="section-title">The Greenwood Capital Solution</h2>
 
                     <div className="feature-row">
                         <div className="feature-text">

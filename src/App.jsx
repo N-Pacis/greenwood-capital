@@ -27,7 +27,7 @@ const Footer = () => (
     marginTop: 'auto'
   }}>
     <div className="container">
-      <p>&copy; 2024 BuildPath. Reimagining Credit.</p>
+      <p>&copy; 2026 Greenwood Capital. Reimagining Credit.</p>
     </div>
   </footer>
 );
