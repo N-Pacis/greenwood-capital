@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="container navbar-container">
         <Link to="/" className="navbar-logo">
           <Landmark className="logo-icon" />
-          <span>BuildPath</span>
+          <span>Greenwood Capital</span>
         </Link>
         
         <div className="navbar-links desktop">

@@ -15,7 +15,7 @@ const Landing = () => {
                             <span className="text-gradient">Equity-First.</span>
                         </h1>
                         <p className="hero-subtitle">
-                            BuildPath dismantles the credit paradox for minority entrepreneurs by replacing algorithms of exclusion with community powered capital.
+                            Greenwood Capital dismantles the credit paradox for minority entrepreneurs by replacing algorithms of exclusion with community powered capital.
                         </p>
                         <div className="hero-actions">
                             <Link to="/borrow" className="btn btn-primary btn-lg">I Need Capital</Link>
@@ -63,7 +63,7 @@ const Landing = () => {
                         </div>
                         <div className="feature-visual">
                             <div className="mock-score-card">
-                                <span className="score-label">BuildPath Score</span>
+                                <span className="score-label">Greenwood Capital Score</span>
                                 <span className="score-value text-gradient">742</span>
                                 <div className="score-bar">
                                     <div className="score-progress" style={{ width: '75%' }}></div>

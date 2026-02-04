@@ -1,8 +1,8 @@
-# BuildPath 🚀
+# Greenwood Capital 🚀
 
 **Rebuilding the financial infrastructure from an equity-first perspective.**
 
-BuildPath is a community-powered microlending platform designed to dismantle the "Credit Paradox" faced by minority entrepreneurs. By replacing algorithmic bias with community validation and alternative data, we create accessible on-ramps to capital.
+Greenwood Capital is a community-powered microlending platform designed to dismantle the "Credit Paradox" faced by minority entrepreneurs. By replacing algorithmic bias with community validation and alternative data, we create accessible on-ramps to capital.
 
 ## 🌟 Key Features
 
@@ -31,8 +31,8 @@ Follow these instructions to run the project locally.
 
 1. **Clone the repository** (or download the source code):
    ```bash
-   git clone https://github.com/your-username/buildpath-hackathon.git
-   cd buildpath-hackathon
+   git clone https://github.com/N-Pacis/code-2040-hackathon.git
+   cd greenwood-capital
    ```
 
 2. **Install Dependencies**:
