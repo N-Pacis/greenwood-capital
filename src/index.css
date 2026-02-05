@@ -1,27 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-/* Custom CSS Variables for the equity-first design system */
-:root {
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --color-score-excellent: #10b981;
-  --color-score-good: #22c55e;
-  --color-score-fair: #f59e0b;
-  --color-score-poor: #ef4444;
+/* Theme for Tailwind: colors and fonts */
+@theme {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --color-app: #0f1115;
+  --color-panel: #161b22;
+  --color-card: #1c232e;
+  --color-main: #f0f6fc;
+  --color-muted: #8b949e;
+  --color-accent: #58a6ff;
+  --color-primary: #1a6b2a;
+  --color-primary-hover: #218838;
+  --color-secondary: #0d1117;
+  --color-innovation: #a371f7;
+  --color-danger: #f85149;
+  --color-warning: #d29922;
+  --color-border: #30363d;
+  --color-border-focus: #58a6ff;
 }
 
-/* Base styles */
+/* CSS variables for components that use var() */
+:root {
+  --bg-app: #0f1115;
+  --bg-panel: #161b22;
+  --bg-card: #1c232e;
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+  --text-accent: #58a6ff;
+  --color-primary: #1a6b2a;
+  --color-primary-hover: #218838;
+  --color-secondary: #0d1117;
+  --color-accent: #a371f7;
+  --color-danger: #f85149;
+  --color-warning: #d29922;
+  --border-subtle: #30363d;
+  --border-focus: #58a6ff;
+  --gradient-brand: linear-gradient(135deg, #1a6b2a 0%, #0f9660 100%);
+  --gradient-hero: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
   min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-main);
+}
+
+a {
+  color: var(--text-main);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+button {
+  font-family: var(--font-heading);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* Hero first slide — dot grid background */
+.hero-dot-grid {
+  background-image: radial-gradient(circle at center, var(--text-muted) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 70%);
+}
+
+.hero-first-slide {
+  background-color: var(--bg-app);
 }
 
 /* Score circle gradient animation */
@@ -31,7 +103,7 @@ body {
 
 /* Accessible focus styles */
 *:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--border-focus);
   outline-offset: 2px;
 }
 
@@ -47,9 +119,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   padding: 0.5rem 1rem;
-  background: #1f2937;
-  color: white;
-  border-radius: 0.375rem;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
   white-space: nowrap;
   opacity: 0;
@@ -60,3 +132,143 @@ body {
 .tooltip:hover::after {
   opacity: 1;
 }
+
+/* Button utilities matching reference */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-family: var(--font-heading);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+  text-decoration: none;
+}
+
+.btn-primary,
+a.btn-primary,
+button.btn-primary {
+  background: var(--gradient-brand);
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.btn-primary:hover,
+a.btn-primary:hover,
+button.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 107, 42, 0.35);
+  text-decoration: none;
+  color: #fff !important;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-muted);
+  background: var(--bg-card);
+  text-decoration: none;
+  color: white;
+}
+
+.text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Homepage / modern layout animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+.animate-delay-5 { animation-delay: 0.5s; }
+.animate-delay-6 { animation-delay: 0.6s; }
+
+/* When revealed via JS (scroll) */
+.reveal-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveal children (parent gets .reveal-section.is-visible) */
+.reveal-section .reveal-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.reveal-section.is-visible .reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-section .reveal-item.stagger-1 { transition-delay: 0.05s; }
+.reveal-section .reveal-item.stagger-2 { transition-delay: 0.1s; }
+.reveal-section .reveal-item.stagger-3 { transition-delay: 0.15s; }
+.reveal-section .reveal-item.stagger-4 { transition-delay: 0.2s; }
+.reveal-section .reveal-item.stagger-5 { transition-delay: 0.25s; }
+.reveal-section .reveal-item.stagger-6 { transition-delay: 0.3s; }
+.reveal-section .reveal-item.stagger-7 { transition-delay: 0.35s; }
+.reveal-section .reveal-item.stagger-8 { transition-delay: 0.4s; }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Star } from 'lucide-react';
 import { SCORING_CONFIG, formatWeight } from '../../config/scoringWeights';
 import Modal from '../common/Modal';
 
@@ -39,10 +40,10 @@ export default function FactorCard({ factorKey, data, rawData, onDispute }) {
 
   // Determine color based on score
   const getScoreColor = (score) => {
-    if (score >= 80) return { bg: 'bg-green-50', text: 'text-green-700', bar: 'bg-green-500' };
-    if (score >= 60) return { bg: 'bg-blue-50', text: 'text-blue-700', bar: 'bg-blue-500' };
-    if (score >= 40) return { bg: 'bg-yellow-50', text: 'text-yellow-700', bar: 'bg-yellow-500' };
-    return { bg: 'bg-gray-50', text: 'text-gray-700', bar: 'bg-gray-400' };
+    if (score >= 80) return { bg: 'bg-panel', text: 'text-primary', bar: 'bg-primary' };
+    if (score >= 60) return { bg: 'bg-panel', text: 'text-primary', bar: 'bg-primary' };
+    if (score >= 40) return { bg: 'bg-panel', text: 'text-warning', bar: 'bg-warning' };
+    return { bg: 'bg-panel', text: 'text-muted', bar: 'bg-border' };
   };
 
   const colors = getScoreColor(percentage);
@@ -50,7 +51,7 @@ export default function FactorCard({ factorKey, data, rawData, onDispute }) {
   return (
     <>
       <div
-        className={`${colors.bg} rounded-xl p-4 border border-gray-100 hover:shadow-md transition-shadow cursor-pointer`}
+        className={`${colors.bg} rounded-xl p-4 border border-border hover:shadow-md transition-shadow cursor-pointer`}
         onClick={() => setShowDetails(true)}
         role="button"
         tabIndex={0}
@@ -64,23 +65,23 @@ export default function FactorCard({ factorKey, data, rawData, onDispute }) {
               {factorIcons[factorKey]}
             </div>
             <div>
-              <h3 className="font-medium text-gray-900 text-sm">{label}</h3>
-              <p className="text-xs text-gray-500">Weight: {formatWeight(weight)}</p>
+              <h3 className="font-medium text-main text-sm font-heading">{label}</h3>
+              <p className="text-xs text-muted">Weight: {formatWeight(weight)}</p>
             </div>
           </div>
           <div className="text-right">
             <span className={`text-lg font-bold ${colors.text}`}>+{data.pointsEarned}</span>
-            <p className="text-xs text-gray-500">points</p>
+            <p className="text-xs text-muted">points</p>
           </div>
         </div>
 
         {/* Progress bar */}
         <div className="mb-3">
-          <div className="flex justify-between text-xs text-gray-500 mb-1">
+          <div className="flex justify-between text-xs text-muted mb-1">
             <span>Factor Score</span>
             <span>{percentage}/100</span>
           </div>
-          <div className="h-2 bg-white rounded-full overflow-hidden">
+          <div className="h-2 bg-app rounded-full overflow-hidden">
             <div
               className={`h-full ${colors.bar} rounded-full transition-all duration-500`}
               style={{ width: `${percentage}%` }}
@@ -89,12 +90,12 @@ export default function FactorCard({ factorKey, data, rawData, onDispute }) {
         </div>
 
         {/* Explanation */}
-        <p className="text-sm text-gray-600 leading-relaxed">
+        <p className="text-sm text-muted leading-relaxed">
           {data.explanation}
         </p>
 
         {/* Click hint */}
-        <div className="flex items-center gap-1 mt-3 text-xs text-gray-400">
+        <div className="flex items-center gap-1 mt-3 text-xs text-muted">
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -111,17 +112,17 @@ export default function FactorCard({ factorKey, data, rawData, onDispute }) {
       >
         <div className="space-y-6">
           {/* Weight explanation */}
-          <div className="bg-blue-50 rounded-lg p-4">
-            <h4 className="font-medium text-blue-900 mb-1">How This Factor Works</h4>
-            <p className="text-sm text-blue-700">{description}</p>
-            <p className="text-sm text-blue-600 mt-2">
+          <div className="bg-panel rounded-lg p-4 border border-border">
+            <h4 className="font-medium text-main mb-1 font-heading">How This Factor Works</h4>
+            <p className="text-sm text-muted">{description}</p>
+            <p className="text-sm text-primary mt-2">
               This factor accounts for <strong>{formatWeight(weight)}</strong> of your total score.
             </p>
           </div>
 
           {/* Score breakdown */}
           <div>
-            <h4 className="font-medium text-gray-900 mb-3">Score Breakdown</h4>
+            <h4 className="font-medium text-main mb-3 font-heading">Score Breakdown</h4>
             <div className="grid grid-cols-2 gap-3">
               <ScoreDetail label="Factor Score" value={`${data.rawScore}/100`} />
               <ScoreDetail label="Points Earned" value={`+${data.pointsEarned}`} />
@@ -132,21 +133,21 @@ export default function FactorCard({ factorKey, data, rawData, onDispute }) {
 
           {/* Raw data preview */}
           <div>
-            <h4 className="font-medium text-gray-900 mb-3">Your Data ({rawData?.length || 0} records)</h4>
-            <div className="max-h-48 overflow-y-auto border border-gray-200 rounded-lg">
+            <h4 className="font-medium text-main mb-3 font-heading">Your Data ({rawData?.length || 0} records)</h4>
+            <div className="max-h-48 overflow-y-auto border border-border rounded-lg">
               {rawData && rawData.length > 0 ? (
                 <table className="w-full text-sm">
                   <tbody>
                     {rawData.slice(0, 5).map((item, index) => (
-                      <tr key={index} className="border-b border-gray-100 last:border-0">
-                        <td className="px-3 py-2 text-gray-600">
+                      <tr key={index} className="border-b border-border last:border-0">
+                        <td className="px-3 py-2 text-muted">
                           {renderDataItem(factorKey, item)}
                         </td>
                       </tr>
                     ))}
                     {rawData.length > 5 && (
                       <tr>
-                        <td className="px-3 py-2 text-gray-400 text-center">
+                        <td className="px-3 py-2 text-muted text-center">
                           +{rawData.length - 5} more records
                         </td>
                       </tr>
@@ -154,25 +155,25 @@ export default function FactorCard({ factorKey, data, rawData, onDispute }) {
                   </tbody>
                 </table>
               ) : (
-                <p className="px-3 py-4 text-gray-500 text-center">No data on file</p>
+                <p className="px-3 py-4 text-muted text-center">No data on file</p>
               )}
             </div>
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3 pt-4 border-t border-gray-200">
+          <div className="flex gap-3 pt-4 border-t border-border">
             <button
               onClick={() => {
                 setShowDetails(false);
                 onDispute?.(factorKey);
               }}
-              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+              className="flex-1 px-4 py-2 border border-border text-main rounded-lg hover:bg-panel transition-colors text-sm font-medium"
             >
               Dispute This Data
             </button>
             <button
               onClick={() => setShowDetails(false)}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+              className="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition-colors text-sm font-medium font-heading"
             >
               Close
             </button>
@@ -185,9 +186,9 @@ export default function FactorCard({ factorKey, data, rawData, onDispute }) {
 
 function ScoreDetail({ label, value }) {
   return (
-    <div className="bg-gray-50 rounded-lg px-3 py-2">
-      <p className="text-xs text-gray-500">{label}</p>
-      <p className="font-medium text-gray-900">{value}</p>
+    <div className="bg-panel rounded-lg px-3 py-2 border border-border">
+      <p className="text-xs text-muted">{label}</p>
+      <p className="font-medium text-main">{value}</p>
     </div>
   );
 }
@@ -212,14 +213,18 @@ function renderDataItem(factorKey, item) {
       return (
         <div className="flex justify-between items-center">
           <span>{item.endorserName} ({item.endorserType.replace('_', ' ')})</span>
-          <span className="text-yellow-600">{'★'.repeat(item.trustLevel)}</span>
+          <span className="flex items-center gap-0.5 text-warning">
+            {Array.from({ length: item.trustLevel }).map((_, i) => (
+              <Star key={i} className="w-4 h-4 fill-current" />
+            ))}
+          </span>
         </div>
       );
     case 'mentorshipCompletion':
       return (
         <div className="flex justify-between items-center">
           <span>{item.programName}</span>
-          {item.verified && <span className="text-green-600 text-xs">Verified</span>}
+          {item.verified && <span className="text-primary text-xs">Verified</span>}
         </div>
       );
     default:
@@ -229,13 +234,13 @@ function renderDataItem(factorKey, item) {
 
 function StatusBadge({ status }) {
   const statusStyles = {
-    on_time: 'bg-green-100 text-green-700',
-    late: 'bg-yellow-100 text-yellow-700',
-    missed: 'bg-red-100 text-red-700'
+    on_time: 'bg-panel text-primary border border-primary',
+    late: 'bg-panel text-warning border border-warning',
+    missed: 'bg-panel text-danger border border-danger'
   };
 
   return (
-    <span className={`text-xs px-2 py-0.5 rounded-full ${statusStyles[status] || 'bg-gray-100 text-gray-600'}`}>
+    <span className={`text-xs px-2 py-0.5 rounded-full ${statusStyles[status] || 'bg-panel text-muted border border-border'}`}>
       {status.replace('_', ' ')}
     </span>
   );

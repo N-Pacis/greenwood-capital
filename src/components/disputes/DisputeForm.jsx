@@ -72,24 +72,24 @@ export default function DisputeForm({ prefillFactor, onSuccess, onCancel }) {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Error display */}
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
-          <svg className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="bg-panel border border-danger rounded-lg p-4 flex items-start gap-3">
+          <svg className="w-5 h-5 text-danger flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <p className="text-sm text-red-700">{error}</p>
+          <p className="text-sm text-danger">{error}</p>
         </div>
       )}
 
       {/* Factor selection */}
       <div>
-        <label htmlFor="factorType" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="factorType" className="block text-sm font-medium text-main mb-2">
           Which factor do you want to dispute?
         </label>
         <select
           id="factorType"
           value={formData.factorType}
           onChange={(e) => setFormData(prev => ({ ...prev, factorType: e.target.value }))}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full px-4 py-2 border border-border rounded-lg bg-app text-main focus:ring-2 focus:ring-primary focus:border-primary"
           required
         >
           <option value="">Select a factor...</option>
@@ -103,21 +103,21 @@ export default function DisputeForm({ prefillFactor, onSuccess, onCancel }) {
 
       {/* Show relevant data for selected factor */}
       {selectedFactorData && selectedFactorData.length > 0 && (
-        <div className="bg-gray-50 rounded-lg p-4">
-          <h4 className="text-sm font-medium text-gray-700 mb-2">
+        <div className="bg-panel rounded-lg p-4 border border-border">
+          <h4 className="text-sm font-medium text-main mb-2">
             Your {SCORING_CONFIG.factorLabels[formData.factorType]} Data
           </h4>
-          <p className="text-xs text-gray-500 mb-2">
+          <p className="text-xs text-muted mb-2">
             Review the data below. Your dispute will be reviewed against these records.
           </p>
           <div className="max-h-32 overflow-y-auto space-y-1">
             {selectedFactorData.slice(0, 5).map((item, index) => (
-              <div key={index} className="text-xs text-gray-600 bg-white px-2 py-1 rounded">
+              <div key={index} className="text-xs text-muted bg-card px-2 py-1 rounded border border-border">
                 {formatDataItem(formData.factorType, item)}
               </div>
             ))}
             {selectedFactorData.length > 5 && (
-              <p className="text-xs text-gray-400">+{selectedFactorData.length - 5} more records</p>
+              <p className="text-xs text-muted">+{selectedFactorData.length - 5} more records</p>
             )}
           </div>
         </div>
@@ -125,7 +125,7 @@ export default function DisputeForm({ prefillFactor, onSuccess, onCancel }) {
 
       {/* Reason */}
       <div>
-        <label htmlFor="reason" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="reason" className="block text-sm font-medium text-main mb-2">
           Why do you believe this data is incorrect?
         </label>
         <textarea
@@ -133,27 +133,27 @@ export default function DisputeForm({ prefillFactor, onSuccess, onCancel }) {
           value={formData.reason}
           onChange={(e) => setFormData(prev => ({ ...prev, reason: e.target.value }))}
           rows={4}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+          className="w-full px-4 py-2 border border-border rounded-lg bg-app text-main focus:ring-2 focus:ring-primary focus:border-primary resize-none"
           placeholder="Please explain in detail what you believe is incorrect and why. Include specific dates or amounts if applicable."
           required
         />
-        <p className="text-xs text-gray-500 mt-1">
+        <p className="text-xs text-muted mt-1">
           {formData.reason.length}/500 characters
         </p>
       </div>
 
       {/* Document upload */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-main mb-2">
           Supporting Documentation (Optional)
         </label>
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
+        <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-muted transition-colors">
           {formData.documentName ? (
             <div className="flex items-center justify-center gap-2">
               <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-sm text-gray-700">{formData.documentName}</span>
+              <span className="text-sm text-main">{formData.documentName}</span>
               <button
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, documentName: '' }))}
@@ -166,13 +166,13 @@ export default function DisputeForm({ prefillFactor, onSuccess, onCancel }) {
             </div>
           ) : (
             <>
-              <svg className="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-8 h-8 text-muted mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
               </svg>
-              <p className="text-sm text-gray-600 mb-1">
+              <p className="text-sm text-muted mb-1">
                 Upload bank statements, receipts, or other proof
               </p>
-              <label className="cursor-pointer text-sm text-blue-600 hover:text-blue-700 font-medium">
+              <label className="cursor-pointer text-sm text-primary hover:opacity-90 font-medium">
                 Choose file
                 <input
                   type="file"
@@ -181,16 +181,16 @@ export default function DisputeForm({ prefillFactor, onSuccess, onCancel }) {
                   onChange={handleFileChange}
                 />
               </label>
-              <p className="text-xs text-gray-400 mt-2">PDF, JPG, or PNG up to 10MB</p>
+              <p className="text-xs text-muted mt-2">PDF, JPG, or PNG up to 10MB</p>
             </>
           )}
         </div>
       </div>
 
       {/* What happens next */}
-      <div className="bg-blue-50 rounded-lg p-4">
-        <h4 className="text-sm font-medium text-blue-900 mb-2">What happens next?</h4>
-        <ol className="text-sm text-blue-700 space-y-1 list-decimal list-inside">
+      <div className="bg-panel rounded-lg p-4 border border-border">
+        <h4 className="text-sm font-medium text-main mb-2">What happens next?</h4>
+        <ol className="text-sm text-muted space-y-1 list-decimal list-inside">
           <li>Your dispute will be marked as "Submitted"</li>
           <li>Our team will review your explanation and any documents</li>
           <li>You'll be notified when the review is complete</li>
@@ -203,7 +203,7 @@ export default function DisputeForm({ prefillFactor, onSuccess, onCancel }) {
         <button
           type="button"
           onClick={onCancel}
-          className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+          className="flex-1 px-4 py-2 border border-border text-main rounded-lg hover:bg-panel transition-colors font-medium"
           disabled={isSubmitting}
         >
           Cancel
@@ -211,7 +211,7 @@ export default function DisputeForm({ prefillFactor, onSuccess, onCancel }) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-heading"
         >
           {isSubmitting ? (
             <>

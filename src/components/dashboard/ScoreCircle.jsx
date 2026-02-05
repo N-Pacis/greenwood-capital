@@ -70,7 +70,7 @@ export default function ScoreCircle({ score, tier, maxScore = 850, minScore = 30
 
         {/* Score display in center */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-bold text-gray-900">{animatedScore}</span>
+          <span className="text-4xl font-bold text-main font-heading">{animatedScore}</span>
           <span
             className="text-sm font-medium px-2 py-0.5 rounded-full mt-1"
             style={{ backgroundColor: `${tier.color}20`, color: tier.color }}
@@ -82,8 +82,8 @@ export default function ScoreCircle({ score, tier, maxScore = 850, minScore = 30
 
       {/* Score range indicator */}
       <div className="flex items-center justify-between w-full max-w-[200px] mt-4 px-2">
-        <span className="text-xs text-gray-500">{minScore}</span>
-        <div className="flex-1 h-1.5 bg-gray-200 rounded-full mx-2 overflow-hidden">
+        <span className="text-xs text-muted">{minScore}</span>
+        <div className="flex-1 h-1.5 bg-panel rounded-full mx-2 overflow-hidden">
           <div
             className="h-full rounded-full transition-all duration-1000"
             style={{
@@ -92,14 +92,14 @@ export default function ScoreCircle({ score, tier, maxScore = 850, minScore = 30
             }}
           />
         </div>
-        <span className="text-xs text-gray-500">{maxScore}</span>
+        <span className="text-xs text-muted">{maxScore}</span>
       </div>
 
       {/* Transparency note */}
-      <p className="text-xs text-gray-500 mt-4 text-center max-w-[280px]">
+      <p className="text-xs text-muted mt-4 text-center max-w-[280px]">
         Your Alternative Credit Score is calculated using transparent, equity-focused criteria.
         <br />
-        <span className="text-gray-400">No criminal history, zip codes, or demographics are used.</span>
+        <span className="text-muted">No criminal history, zip codes, or demographics are used.</span>
       </p>
     </div>
   );

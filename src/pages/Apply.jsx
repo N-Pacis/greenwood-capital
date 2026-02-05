@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Home, Lightbulb } from 'lucide-react';
 import './Apply.css';
 
 const Apply = () => {
@@ -42,7 +43,9 @@ const Apply = () => {
                         <p className="text-muted">We use real data to approve you, not just history.</p>
 
                         <div className="data-source-row">
-                            <div className="source-icon">🏠</div>
+                            <div className="source-icon">
+                                <Home className="w-6 h-6 text-primary" />
+                            </div>
                             <div className="source-info">
                                 <h4>Rent History</h4>
                                 <p>Connect your rental portal or upload last 12 months receipts.</p>
@@ -51,7 +54,9 @@ const Apply = () => {
                         </div>
 
                         <div className="data-source-row">
-                            <div className="source-icon">💡</div>
+                            <div className="source-icon">
+                                <Lightbulb className="w-6 h-6 text-primary" />
+                            </div>
                             <div className="source-info">
                                 <h4>Utility Payments</h4>
                                 <p>Demonstrate reliability with your electricity/internet bills.</p>

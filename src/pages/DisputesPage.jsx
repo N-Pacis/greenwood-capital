@@ -46,10 +46,10 @@ export default function DisputesPage() {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-app flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-600">Loading...</p>
+          <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-muted">Loading...</p>
         </div>
       </div>
     );
@@ -60,13 +60,13 @@ export default function DisputesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-app">
       <Header />
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Dispute Center</h1>
-          <p className="text-gray-600">
+          <h1 className="text-2xl font-bold text-main mb-2 font-heading">Dispute Center</h1>
+          <p className="text-muted">
             If you believe any of your scoring data is incorrect, you can submit a dispute here.
             We'll review your claim and update your score if appropriate.
           </p>
@@ -74,16 +74,16 @@ export default function DisputesPage() {
 
         {/* Success Message */}
         {successMessage && (
-          <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
-            <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="mb-6 bg-panel border border-primary rounded-lg p-4 flex items-start gap-3">
+            <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div className="flex-1">
-              <p className="text-sm text-green-700">{successMessage}</p>
+              <p className="text-sm text-main">{successMessage}</p>
             </div>
             <button
               onClick={() => setSuccessMessage(null)}
-              className="text-green-500 hover:text-green-700"
+              className="text-primary hover:opacity-90"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -93,13 +93,13 @@ export default function DisputesPage() {
         )}
 
         {/* New Dispute Section */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm mb-8">
-          <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-            <h2 className="font-semibold text-gray-900">Submit a Dispute</h2>
+        <div className="bg-card rounded-xl border border-border shadow-sm mb-8">
+          <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+            <h2 className="font-semibold text-main font-heading">Submit a Dispute</h2>
             {!showForm && (
               <button
                 onClick={() => setShowForm(true)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:opacity-90 transition-colors font-heading"
               >
                 New Dispute
               </button>
@@ -115,8 +115,8 @@ export default function DisputesPage() {
               />
             </div>
           ) : (
-            <div className="p-6 text-center text-gray-500">
-              <svg className="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="p-6 text-center text-muted">
+              <svg className="w-12 h-12 text-muted mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               <p className="text-sm">Click "New Dispute" to submit a correction request</p>
@@ -126,7 +126,7 @@ export default function DisputesPage() {
 
         {/* Your Disputes Section */}
         <div>
-          <h2 className="font-semibold text-gray-900 mb-4">Your Disputes</h2>
+          <h2 className="font-semibold text-main mb-4 font-heading">Your Disputes</h2>
           <DisputeList
             disputes={disputes}
             onUpdateStatus={updateDisputeStatus}
@@ -134,9 +134,9 @@ export default function DisputesPage() {
         </div>
 
         {/* Help Section */}
-        <div className="mt-8 bg-blue-50 rounded-xl p-6 border border-blue-100">
-          <h3 className="font-semibold text-blue-900 mb-3">Need Help?</h3>
-          <div className="space-y-3 text-sm text-blue-700">
+        <div className="mt-8 bg-panel rounded-xl p-6 border border-border">
+          <h3 className="font-semibold text-main mb-3 font-heading">Need Help?</h3>
+          <div className="space-y-3 text-sm text-muted">
             <p>
               <strong>What can I dispute?</strong> You can dispute any data point used in your
               score calculation - rent payments, utility bills, endorsements, or mentorship records.

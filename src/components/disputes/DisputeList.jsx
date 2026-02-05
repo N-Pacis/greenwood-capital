@@ -8,12 +8,12 @@ import DisputeStatus from './DisputeStatus';
 export default function DisputeList({ disputes, onUpdateStatus }) {
   if (!disputes || disputes.length === 0) {
     return (
-      <div className="bg-gray-50 rounded-xl p-8 text-center">
-        <svg className="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="bg-panel rounded-xl p-8 text-center border border-border">
+        <svg className="w-12 h-12 text-muted mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
         </svg>
-        <h3 className="text-lg font-medium text-gray-900 mb-1">No Disputes Yet</h3>
-        <p className="text-sm text-gray-500">
+        <h3 className="text-lg font-medium text-main mb-1 font-heading">No Disputes Yet</h3>
+        <p className="text-sm text-muted">
           If you believe any of your scoring data is incorrect, you can submit a dispute above.
         </p>
       </div>
@@ -47,23 +47,23 @@ function DisputeCard({ dispute, onUpdateStatus }) {
   });
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+    <div className="bg-card rounded-xl border border-border overflow-hidden">
       {/* Header */}
-      <div className="px-4 py-3 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+      <div className="px-4 py-3 bg-panel border-b border-border flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-gray-900">{factorLabel}</span>
+          <span className="text-sm font-medium text-main">{factorLabel}</span>
           <DisputeStatus status={dispute.status} />
         </div>
-        <span className="text-xs text-gray-500">Submitted {createdDate}</span>
+        <span className="text-xs text-muted">Submitted {createdDate}</span>
       </div>
 
       {/* Body */}
       <div className="p-4">
-        <p className="text-sm text-gray-700 mb-3">{dispute.reason}</p>
+        <p className="text-sm text-main mb-3">{dispute.reason}</p>
 
         {/* Document attachment */}
         {dispute.supportingDocumentUrl && (
-          <div className="flex items-center gap-2 text-sm text-blue-600 mb-3">
+          <div className="flex items-center gap-2 text-sm text-accent mb-3">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
             </svg>
@@ -73,28 +73,28 @@ function DisputeCard({ dispute, onUpdateStatus }) {
 
         {/* Resolution notes (if resolved) */}
         {dispute.status === 'resolved' && dispute.resolutionNotes && (
-          <div className="bg-green-50 rounded-lg p-3 mt-3">
-            <p className="text-xs font-medium text-green-800 mb-1">Resolution</p>
-            <p className="text-sm text-green-700">{dispute.resolutionNotes}</p>
+          <div className="bg-panel rounded-lg p-3 mt-3 border border-primary">
+            <p className="text-xs font-medium text-main mb-1">Resolution</p>
+            <p className="text-sm text-muted">{dispute.resolutionNotes}</p>
           </div>
         )}
 
         {dispute.status === 'rejected' && dispute.resolutionNotes && (
-          <div className="bg-red-50 rounded-lg p-3 mt-3">
-            <p className="text-xs font-medium text-red-800 mb-1">Decision</p>
-            <p className="text-sm text-red-700">{dispute.resolutionNotes}</p>
+          <div className="bg-panel rounded-lg p-3 mt-3 border border-danger">
+            <p className="text-xs font-medium text-main mb-1">Decision</p>
+            <p className="text-sm text-muted">{dispute.resolutionNotes}</p>
           </div>
         )}
 
         {/* Demo controls (for testing) */}
         {(dispute.status === 'submitted' || dispute.status === 'under_review') && (
-          <div className="mt-4 pt-3 border-t border-gray-100">
-            <p className="text-xs text-gray-400 mb-2">Demo: Simulate status change</p>
+          <div className="mt-4 pt-3 border-t border-border">
+            <p className="text-xs text-muted mb-2">Demo: Simulate status change</p>
             <div className="flex gap-2">
               {dispute.status === 'submitted' && (
                 <button
                   onClick={() => onUpdateStatus?.(dispute.id, 'under_review')}
-                  className="text-xs px-3 py-1 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors"
+                  className="text-xs px-3 py-1 bg-panel text-primary rounded-full hover:opacity-90 transition-colors border border-border"
                 >
                   Start Review
                 </button>
@@ -121,7 +121,7 @@ function DisputeCard({ dispute, onUpdateStatus }) {
       </div>
 
       {/* Status timeline */}
-      <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
+      <div className="px-4 py-3 bg-panel border-t border-border">
         <StatusTimeline status={dispute.status} />
       </div>
     </div>
@@ -154,10 +154,10 @@ function StatusTimeline({ status }) {
               <div
                 className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
                   isRejected
-                    ? 'bg-red-500 text-white'
+                    ? 'bg-danger text-white'
                     : isCompleted
-                      ? 'bg-green-500 text-white'
-                      : 'bg-gray-200 text-gray-500'
+                      ? 'bg-primary text-white'
+                      : 'bg-panel text-muted border border-border'
                 }`}
               >
                 {isCompleted && !isRejected ? (
@@ -172,7 +172,7 @@ function StatusTimeline({ status }) {
                   index + 1
                 )}
               </div>
-              <span className={`text-xs mt-1 ${isCurrent ? 'font-medium text-gray-900' : 'text-gray-500'}`}>
+              <span className={`text-xs mt-1 ${isCurrent ? 'font-medium text-main' : 'text-muted'}`}>
                 {isRejected ? 'Rejected' : step.label}
               </span>
             </div>
@@ -181,7 +181,7 @@ function StatusTimeline({ status }) {
             {index < steps.length - 1 && (
               <div
                 className={`flex-1 h-0.5 mx-2 ${
-                  index < statusIndex ? 'bg-green-500' : 'bg-gray-200'
+                  index < statusIndex ? 'bg-primary' : 'bg-border'
                 }`}
               />
             )}
