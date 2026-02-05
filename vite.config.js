@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 // SPA fallback: serve index.html for routes like /borrow, /invest so refresh/direct URL works
 function spaFallback() {
@@ -26,5 +27,5 @@ function spaFallback() {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), spaFallback()],
+  plugins: [react(), tailwindcss(), spaFallback()],
 })
