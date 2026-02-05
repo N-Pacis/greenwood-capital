@@ -62,7 +62,7 @@ export default function DisputesPage() {
   return (
     <div className="min-h-screen bg-app">
       <Header />
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 min-w-0 w-full">
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-main mb-2 font-heading">Dispute Center</h1>

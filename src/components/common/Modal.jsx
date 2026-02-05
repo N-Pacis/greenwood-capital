@@ -46,23 +46,23 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
       />
 
       {/* Modal */}
-      <div className="flex min-h-full items-center justify-center p-4">
+      <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
         <div
           ref={modalRef}
           tabIndex={-1}
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
-          className={`relative w-full ${sizeClasses[size]} bg-card rounded-xl shadow-xl transform transition-all font-body`}
+          className={`relative w-full max-h-[90vh] flex flex-col ${sizeClasses[size]} bg-card rounded-xl shadow-xl transform transition-all font-body`}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-            <h2 id="modal-title" className="text-lg font-semibold text-main font-heading">
+          <div className="flex items-center justify-between gap-3 px-4 sm:px-6 py-4 border-b border-border flex-shrink-0">
+            <h2 id="modal-title" className="text-base sm:text-lg font-semibold text-main font-heading truncate min-w-0">
               {title}
             </h2>
             <button
               onClick={onClose}
-              className="p-1 rounded-lg text-muted hover:text-main hover:bg-panel transition-colors"
+              className="p-2 -m-2 rounded-lg text-muted hover:text-main hover:bg-panel transition-colors flex-shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Close modal"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,7 +72,7 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
           </div>
 
           {/* Content */}
-          <div className="px-6 py-4">
+          <div className="px-4 sm:px-6 py-4 overflow-y-auto min-h-0 flex-1">
             {children}
           </div>
         </div>

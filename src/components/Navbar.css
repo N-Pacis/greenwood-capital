@@ -11,8 +11,14 @@
 .navbar .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
     width: 100%;
+}
+
+@media (min-width: 640px) {
+    .navbar .container {
+        padding: 0 1.5rem;
+    }
 }
 
 .navbar-container {
@@ -27,8 +33,21 @@
     gap: 0.5rem;
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     color: var(--text-main);
+    min-width: 0;
+}
+
+.navbar-logo span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width: 640px) {
+    .navbar-logo {
+        font-size: 1.5rem;
+    }
 }
 
 .logo-icon {
@@ -77,11 +96,25 @@
 }
 
 @media (max-width: 768px) {
+    .mobile-menu-btn {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     .navbar-links.desktop {
         display: none;
     }
 
     .mobile-menu-btn {
-        display: block;
+        display: flex;
+    }
+
+    .mobile-menu a,
+    .mobile-menu .btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
     }
 }
